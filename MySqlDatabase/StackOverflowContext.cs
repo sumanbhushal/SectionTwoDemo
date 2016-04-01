@@ -19,8 +19,19 @@ namespace MySqlDatabase
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            /***************************************
+                        Annotation
+            ***************************************/
             modelBuilder.Entity<Annotation>().ToTable("annotation");
-            modelBuilder.Entity<Annotation>().Property(i => i.Id).HasColumnName("annotationid");
+            modelBuilder.Entity<Annotation>().Property(a => a.Id).HasColumnName("annotationid");
+            modelBuilder.Entity<Annotation>().Property(a => a.PostId).HasColumnName("postid");
+            modelBuilder.Entity<Annotation>().Property(a => a.CommentId).HasColumnName("commentid");
+            modelBuilder.Entity<Annotation>()
+                .Property(a => a.AnnotationDescription)
+                .HasColumnName("annotationdescription");
+            modelBuilder.Entity<Annotation>()
+                .Property(a => a.AnnotationCreateDate)
+                .HasColumnName("annotationcreatedate");
             base.OnModelCreating(modelBuilder);
         }
     }

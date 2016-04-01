@@ -18,5 +18,12 @@ namespace WebApplication.Controllers
             var annotationData = _repository.GetAnnotions();
             return Ok(annotationData);
         }
+
+        public IHttpActionResult Get(int id)
+        {
+            var data = _repository.FindAnnotationById(id);
+            if (data == null) return NotFound();
+            return Ok(data);
+        }
     }
 }

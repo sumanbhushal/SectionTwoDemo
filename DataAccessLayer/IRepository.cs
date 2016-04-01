@@ -6,5 +6,6 @@ namespace DataAccessLayer
     public interface IRepository
     {
         IEnumerable<Annotation> GetAnnotions();
+        Annotation FindAnnotationById(int id);
     }
 }

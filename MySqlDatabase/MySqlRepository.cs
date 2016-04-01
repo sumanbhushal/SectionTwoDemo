@@ -18,5 +18,17 @@ namespace MySqlDatabase
                 return database.Annotations.Take(5).ToList();
             }
         }
+
+        public Annotation FindAnnotationById(int id)
+        {
+            using (var database = new StackOverflowContext())
+            {
+                return database.Annotations.FirstOrDefault(a => a.Id == id);
+            }
+            {
+                
+            }
+        }
     }
 }
+
