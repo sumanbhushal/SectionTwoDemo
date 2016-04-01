@@ -16,6 +16,7 @@ namespace MySqlDatabase
             
         }
         public DbSet<Annotation> Annotations { get; set; }
+        public DbSet<Post> Posts { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -32,6 +33,14 @@ namespace MySqlDatabase
             modelBuilder.Entity<Annotation>()
                 .Property(a => a.AnnotationCreateDate)
                 .HasColumnName("annotationcreatedate");
+            base.OnModelCreating(modelBuilder);
+
+
+            /***************************************
+                        Posts
+            ***************************************/
+            modelBuilder.Entity<Annotation>().ToTable("posts");
+            modelBuilder.Entity<Annotation>().Property(a => a.Id).HasColumnName("id");
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -21,6 +21,13 @@ namespace WebApplication
                 defaults: new {controller = "Annotations", id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name:"PostsApi",
+                routeTemplate:"api/posts/{id}",
+                defaults: new { controller = "Posts", id = RouteParameter.Optional }
+                );
+            
+
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
                 new CamelCasePropertyNamesContractResolver();
