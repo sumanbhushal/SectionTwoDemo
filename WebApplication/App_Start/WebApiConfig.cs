@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Newtonsoft.Json.Serialization;
 
 namespace WebApplication
 {
@@ -15,10 +16,14 @@ namespace WebApplication
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                name: "AnnotationsApi",
+                routeTemplate: "api/annotations/{id}",
+                defaults: new {controller = "Annotations", id = RouteParameter.Optional }
             );
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = 
+                new CamelCasePropertyNamesContractResolver();
         }
     }
 }
